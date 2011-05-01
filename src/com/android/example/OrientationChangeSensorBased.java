@@ -18,6 +18,8 @@ public class OrientationChangeSensorBased extends Activity implements SensorEven
 	private static final boolean DEBUG = true;
 	private static final String TAG = "OrientationChangeSensorBased";
 
+	private static final float G_THRESHOLD = 6.0f;
+
 	private SensorManager mSensorManager;
 	private Sensor mAccelerometerSensor;
 	private float[] mAccelerometerSensorValues;
@@ -78,9 +80,9 @@ public class OrientationChangeSensorBased extends Activity implements SensorEven
 			float gx = mAccelerometerSensorValues[0];
 			float gy = mAccelerometerSensorValues[1];
 
-			if (gx > 6) {
-				if (mOrientation != ActivityInfo.SCREEN_ORIENTATION_PORTRAIT) {
-					mOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
+			if (gx > G_THRESHOLD) {
+				if (mOrientation != Configuration.ORIENTATION_PORTRAIT) {
+					mOrientation = Configuration.ORIENTATION_PORTRAIT;
 					if (DEBUG) {
 						Log.d(TAG, "orientation = " + mOrientation);
 					}
@@ -89,9 +91,9 @@ public class OrientationChangeSensorBased extends Activity implements SensorEven
 					rotateAnimation.setFillAfter(true);
 					mMainText.startAnimation(rotateAnimation);
 				}
-			} else if (gy > 6) {
-				if (mOrientation != ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) {
-					mOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE;
+			} else if (gy > G_THRESHOLD) {
+				if (mOrientation != Configuration.ORIENTATION_LANDSCAPE) {
+					mOrientation = Configuration.ORIENTATION_LANDSCAPE;
 					if (DEBUG) {
 						Log.d(TAG, "orientation = " + mOrientation);
 					}
@@ -121,6 +123,6 @@ public class OrientationChangeSensorBased extends Activity implements SensorEven
 				}
 			}
 		}
-		return orientation - 1;
+		return orientation;
 	}
 }

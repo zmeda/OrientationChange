@@ -1,4 +1,4 @@
-package com.android.example;
+package com.androidgeek.example.orientation;
 
 import android.app.Activity;
 import android.content.res.Configuration;

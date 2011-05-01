@@ -1,7 +1,6 @@
-package com.android.example;
+package com.androidgeek.example.orientation;
 
 import android.app.Activity;
-import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
